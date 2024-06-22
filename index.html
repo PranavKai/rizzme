@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes or No Buttons</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url("rizzed.webp");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            font-family: "Roboto", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .buttons-container {
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 50px;
+            position: relative;
+            width: 500px;
+            height: 370px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #noButton {
+            position: absolute;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .popup video {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="buttons-container">
+                    <div>
+                       <h4> Hey babe, wanna get rizzed? 😏😏</h4>
+                    </div>
+                    <button class="btn btn-primary button" id="yesButton">Yes</button>
+                    <button class="btn btn-danger button" id="noButton">No</button>
+                </div>
+                <div class="overlay" id="overlay"></div>
+                <div class="popup" id="popup">
+                    <video id="popupVideo" src="yougotrizzed.mp4" alt="Popup Video" controls muted></video>
+                </div>
+                <audio id="bgMusic">
+                    <source src="song.mp3" type="audio/mpeg"> 
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+        const container = document.querySelector('.buttons-container');
+        const minDistance = 100;
+
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        const bgMusic = document.getElementById('bgMusic');
+        const popupVideo = document.getElementById('popupVideo');
+
+        noButton.addEventListener('mouseover', () => {
+            moveButton();
+        });
+
+        yesButton.addEventListener('click', () => {
+            showPopup();
+        });
+
+        function moveButton() {
+            const containerWidth = container.offsetWidth;
+            const containerHeight = container.offsetHeight;
+            const buttonWidth = noButton.offsetWidth;
+            const buttonHeight = noButton.offsetHeight;
+
+            const maxX = containerWidth - buttonWidth;
+            const maxY = containerHeight - buttonHeight;
+
+            let randomX, randomY, distance;
+
+            do {
+                randomX = Math.floor(Math.random() * maxX);
+                randomY = Math.floor(Math.random() * maxY);
+                distance = calculateDistance(randomX, randomY, noButton.offsetLeft, noButton.offsetTop);
+            } while (distance < minDistance);
+
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+        }
+
+        function calculateDistance(x1, y1, x2, y2) {
+            return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        }
+
+        function showPopup() {
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+            bgMusic.play();
+            popupVideo.play();
+        }
+
+        overlay.addEventListener('click', () => {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+            bgMusic.pause();
+            bgMusic.currentTime = 0;
+            popupVideo.pause();
+            popupVideo.currentTime = 0;
+        });
+
+        moveButton();
+    </script>
+</body>
+
+</html>
