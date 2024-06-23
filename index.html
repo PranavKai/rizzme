@@ -13,31 +13,48 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background-image: url("rizzed.webp");
-            background-repeat: no-repeat;
-            background-size: cover;
             font-family: "Roboto", sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
+            margin: 0;
         }
 
-        .buttons-container {
+        .outer-container {
+            border: 5px solid #000;
+            padding: 10px;
+            width: 90%;
+            max-width: 750px;
+            height: 90%;
+            max-height: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("rizzed.webp");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .inner-container {
             border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 30px;
+            background-color: rgba(210, 219, 210, 0.4);
+            padding: 20px;
+            width: 70%;
+            height: 70%;
+            max-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             position: relative;
-            width: 100%;
-            max-width: 500px;
-            height: auto;
         }
 
         .button {
             padding: 10px 20px;
             font-size: 16px;
-            margin: 5px;
+            margin: 10px;
             cursor: pointer;
         }
 
@@ -74,8 +91,8 @@
         }
 
         @media (max-width: 576px) {
-            .buttons-container {
-                padding: 20px;
+            .inner-container {
+                padding: 15px;
                 text-align: center;
             }
 
@@ -89,32 +106,29 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-sm-12">
-                <div class="buttons-container">
-                    <div>
-                       <h4> Hey babe, wanna get rizzed? 😏😏</h4>
-                    </div>
-                    <button class="btn btn-primary button" id="yesButton">Yes</button>
-                    <button class="btn btn-danger button" id="noButton">No</button>
-                </div>
-                <div class="overlay" id="overlay"></div>
-                <div class="popup" id="popup">
-                    <video id="popupVideo" src="yougotrizzed.mp4" alt="Popup Video" controls muted></video>
-                </div>
-                <audio id="bgMusic">
-                    <source src="song.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
+    <div class="outer-container">
+        <div class="inner-container">
+            <div>
+                <h4>Hey babe, wanna get rizzed? 😏😏</h4>
             </div>
+            <button class="btn btn-primary button" id="yesButton">Yes</button>
+            <button class="btn btn-danger button" id="noButton">No</button>
         </div>
+        <div class="overlay" id="overlay"></div>
+        <div class="popup" id="popup">
+            <video id="popupVideo" src="yougotrizzed.mp4" alt="Popup Video" controls muted></video>
+        </div>
+        <audio id="bgMusic">
+            <source src="song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
     </div>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         const noButton = document.getElementById('noButton');
         const yesButton = document.getElementById('yesButton');
-        const container = document.querySelector('.buttons-container');
+        const container = document.querySelector('.inner-container');
         const minDistance = 100;
 
         const popup = document.getElementById('popup');
