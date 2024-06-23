@@ -15,7 +15,7 @@
         body {
             background-image: url("rizzed.webp");
             background-repeat: no-repeat;
-            background-size: 100% 100%;
+            background-size: cover;
             font-family: "Roboto", sans-serif;
             display: flex;
             justify-content: center;
@@ -27,10 +27,11 @@
         .buttons-container {
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.8);
-            padding: 50px;
+            padding: 30px;
             position: relative;
-            width: 500px;
-            height: 370px;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
         }
 
         .button {
@@ -72,16 +73,16 @@
             z-index: 999;
         }
 
-        /* Media queries for phone-friendly layout */
-        @media (max-width: 768px) {
+        @media (max-width: 576px) {
             .buttons-container {
-                width: 90%;
-                height: auto;
                 padding: 20px;
+                text-align: center;
             }
 
-            .button {
-                font-size: 14px;
+            #noButton {
+                position: relative;
+                display: inline-block;
+                margin-top: 10px;
             }
         }
     </style>
@@ -90,10 +91,10 @@
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-12">
                 <div class="buttons-container">
                     <div>
-                        <h4> Hey babe, wanna get rizzed? 😏😏</h4>
+                       <h4> Hey babe, wanna get rizzed? 😏😏</h4>
                     </div>
                     <button class="btn btn-primary button" id="yesButton">Yes</button>
                     <button class="btn btn-danger button" id="noButton">No</button>
