@@ -71,6 +71,19 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
+
+        /* Media queries for phone-friendly layout */
+        @media (max-width: 768px) {
+            .buttons-container {
+                width: 90%;
+                height: auto;
+                padding: 20px;
+            }
+
+            .button {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 
@@ -80,7 +93,7 @@
             <div class="col-md-6">
                 <div class="buttons-container">
                     <div>
-                       <h4> Hey babe, wanna get rizzed? 😏😏</h4>
+                        <h4> Hey babe, wanna get rizzed? 😏😏</h4>
                     </div>
                     <button class="btn btn-primary button" id="yesButton">Yes</button>
                     <button class="btn btn-danger button" id="noButton">No</button>
@@ -90,7 +103,7 @@
                     <video id="popupVideo" src="yougotrizzed.mp4" alt="Popup Video" controls muted></video>
                 </div>
                 <audio id="bgMusic">
-                    <source src="song.mp3" type="audio/mpeg"> 
+                    <source src="song.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
             </div>
